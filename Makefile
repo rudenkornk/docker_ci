@@ -132,6 +132,10 @@ $(BUILD_DIR)/ci_id_test: $(DOCKER_IMAGE) $(TESTS_DIR)/id_test.sh
 
 # Check we did not change host directory ownership
 $(BUILD_DIR)/ownership_test: $(DOCKER_IMAGE)
+	docker exec \
+		--user ci_user \
+		$(DOCKER_TEST_CONTAINER_NAME) \
+		bash -c "touch $(BUILD_DIR)/ownership_test_file"
 	stat --format="%U:%G %n" * > $(BUILD_DIR)/file_stat
 	stat --format="%U:%G %n" */* >> $(BUILD_DIR)/file_stat
 	GREP_COUNT=$$(grep --count $$(id --user --name):$$(id --group --name) $(BUILD_DIR)/file_stat); \
