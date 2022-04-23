@@ -61,9 +61,3 @@ LABEL org.opencontainers.image.source="https://github.com/${IMAGE_NAME}"
 ARG VERSION
 LABEL org.opencontainers.image.version="${VERSION}"
 
-ARG VCS_REF
-LABEL org.opencontainers.image.revision="${VCS_REF}"
-
-ARG BUILD_DATE
-LABEL org.opencontainers.image.created="${BUILD_DATE}"
-
