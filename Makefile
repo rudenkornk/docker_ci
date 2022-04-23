@@ -1,9 +1,5 @@
 SHELL = /usr/bin/env bash
 
-VCS_REF ?= $(shell git rev-parse HEAD)
-VCS_REF := $(VCS_REF)
-BUILD_DATE ?= $(shell date --rfc-3339=date)
-BUILD_DATE := $(BUILD_DATE)
 BUILD_DIR ?= build
 BUILD_DIR := $(BUILD_DIR)
 TESTS_DIR ?= tests
@@ -55,8 +51,6 @@ $(DOCKER_IMAGE): $(DOCKER_DEPS) $(DOCKER_IMAGE_CREATE_STATUS)
 		$(DOCKER_CACHE_FROM_COMMAND) \
 		--build-arg IMAGE_NAME="$(DOCKER_IMAGE_NAME)" \
 		--build-arg VERSION="$(DOCKER_IMAGE_VERSION)" \
-		--build-arg VCS_REF="$(VCS_REF)" \
-		--build-arg BUILD_DATE="$(BUILD_DATE)" \
 		--tag $(DOCKER_IMAGE_TAG) .
 	mkdir --parents $(BUILD_DIR) && touch $@
 
