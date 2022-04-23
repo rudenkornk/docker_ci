@@ -6,6 +6,7 @@ WORKDIR /root
 # The image supports two use cases:
 #  1. Using it for local testing
 #  2. Using it for CI like GitHub Actions
+#  3. Use it as base image
 # The first one should use a normal user with user id matching user id of the host system
 # We cannot user root for local testing since it will create its output inaccessible by the host user (unless they use "sudo", but it is a brute solution)
 # In contrary, the second one requires that last USER command must be root and we also cannot rely on entrypoint script, and even on home directory (that is because of the way GitHub Actions use provided image)

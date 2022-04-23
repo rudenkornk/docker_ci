@@ -33,7 +33,7 @@ make clean
 ```
 
 ## Different use cases for this repository
-This repository supports two different scenarios
+This repository supports three different scenarios
 
 ### 1. Use it in your CI
 For example, in GitHub Actions that might look like:
@@ -61,4 +61,9 @@ docker run --interactive --tty \
 Instead of `$(pwd)` use path to your repo.
 It is recommended to mount it into `/home/repo`.
 Be careful if mounting inside `ci_user`'s home directory (`/home/ci_user`): entrypoint script will change rights to what is written in `CI_UID` and `CI_GID` vars of everything inside home directory.
+
+### 3. Use image as the base image
+```Dockerfile
+FROM rudenkornk/docker_ci:0.1.0
+```
 
