@@ -19,7 +19,9 @@ if [[ ! -z "$CI_GID" ]]; then
 fi
 
 # Drop privileges and execute next container command, or 'bash' if not specified.
-sudo deluser --quiet ci_user sudo
+if [[ "$KEEP_CI_USER_SUDO" != "true" ]]; then
+    sudo deluser --quiet ci_user sudo
+fi
 source /home/ci_user/.profile
 if [[ $# -gt 0 ]]; then
     exec sudo --preserve-env --user=$USER -- /home/ci_user/entrypoint_continue.sh $@
