@@ -6,6 +6,9 @@ TESTS_DIR ?= tests
 TESTS_DIR := $(TESTS_DIR)
 CI_BIND_MOUNT ?= $(shell pwd)
 CI_BIND_MOUNT := $(CI_BIND_MOUNT)
+KEEP_CI_USER_SUDO ?= false
+KEEP_CI_USER_SUDO := $(KEEP_CI_USER_SUDO)
+CI_BIND_MOUNT := $(CI_BIND_MOUNT)
 DOCKER_IMAGE_VERSION ?= 0.1.0
 DOCKER_IMAGE_VERSION := $(DOCKER_IMAGE_VERSION)
 DOCKER_BASE_NAME ?= docker_ci
@@ -68,6 +71,7 @@ endif
 	docker run --interactive --tty --detach \
 		--user ci_user \
 		--env CI_UID="$$(id --user)" --env CI_GID="$$(id --group)" \
+		--env KEEP_CI_USER_SUDO="$(KEEP_CI_USER_SUDO)" \
 		--name $(DOCKER_CONTAINER_NAME) \
 		--mount type=bind,source="$(CI_BIND_MOUNT)",target=/home/repo \
 		$(DOCKER_IMAGE_TAG)
