@@ -33,6 +33,8 @@ RUN : \
   && mkdir --parents --mode=777 /home/repo \
   && echo "cd /home/repo" >> /home/ci_user/.profile
 
+WORKDIR /home/repo
+
 # Entrypoint allows to change ci_user's id and removes admin privileges from them
 # Copy it to ci_user's directory to allow access both to root and ci_user
 # Also copy config_github_actions.sh, which acts like entrypoint on client's side in GitHub Actions
