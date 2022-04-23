@@ -41,7 +41,7 @@ For example, in GitHub Actions that might look like:
 ```yaml
 jobs:
   build:
-    runs-on: "ubuntu-20.04"
+    runs-on: "ubuntu-22.04"
     container:
       image: rudenkornk/docker_ci:0.1.0
     steps:
