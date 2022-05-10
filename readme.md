@@ -63,6 +63,7 @@ Using it in GitHub Actions with its native support comes with several major disa
 1. GitHub Actions always run commands in container as root
 2. GitHub Actions do not run provided entrypoint script, which removes admin privileges from ci_user
 3. GitHub Actions use its custom home directory and thus do not load default user profile with their environment.
+
 Because of these reasons it is not recommended to use image in native GitHub Actions support.
 Instead, it is better to use option 1 inside GitHub Actions script. This way, testing will work exactly the same on the local machine and at the online CI, with no additional support.
 
