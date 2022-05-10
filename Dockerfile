@@ -3,18 +3,20 @@ FROM ubuntu:22.04
 USER root
 WORKDIR /root
 
-# The image supports two use cases:
-#  1. Using it for local testing
-#  2. Using it for CI like GitHub Actions
-#  3. Use it as base image
+# The image supports several use cases:
+#  1. Using it for local testing with mounting of existing repository
+#  2. Using it for local testing with downloading repo into container
+#  3. Using it in GitHub Actions with its native docker support
+#  4. Use it as base image
 # The first one should use a normal user with user id matching user id of the host system
-# We cannot user root for local testing since it will create its output inaccessible by the host user (unless they use "sudo", but it is a brute solution)
-# In contrary, the second one requires that last USER command must be root and we also cannot rely on entrypoint script, and even on home directory (that is because of the way GitHub Actions use provided image)
+# We cannot user root for local testing since it will create its output inaccessible by the host user (unless they summon admin privileges)
+# In contrary, native docker support of GitHub Actions CI requires that last USER command is root.
+# GitHub Actions do not run any provided entrypoint script, but rather its own, which bootstraps all GitHub's tweaks and tools.
 # See also https://docs.github.com/en/actions/creating-actions/dockerfile-support-for-github-actions
 #
-# In order to satisfy both requirements we use the following strategy:
+# In order to support these use cases we use the following strategy:
 # For the first use case we promise that we run local testing only with "--user ci_user" option and default entrypoint script, which changes ci_user's id
-# For the second use case we leave root as the default user for image, and on client side run config script
+# For the third use case we leave root as the default user for image, and on client side run config script.
 
 # Create new user "ci_user" for local CI
 # Temprorarily give ci_user admin privileges
