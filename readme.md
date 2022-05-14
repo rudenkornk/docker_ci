@@ -55,7 +55,7 @@ jobs:
   build:
     runs-on: "ubuntu-22.04"
     container:
-      image: rudenkornk/docker_ci:0.1.0
+      image: rudenkornk/docker_ci:1.0.0
     steps:
       # some build steps
 ```
@@ -69,6 +69,6 @@ Instead, it is better to use option 1 inside GitHub Actions script. This way, te
 
 ### 3. Use image as the base image
 ```Dockerfile
-FROM rudenkornk/docker_ci:0.1.0
+FROM rudenkornk/docker_ci:1.0.0
 ```
 
