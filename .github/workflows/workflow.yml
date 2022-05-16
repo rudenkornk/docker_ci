@@ -67,12 +67,6 @@ jobs:
         echo "IMAGE_VERSION=$(make --question docker_image_version)" >> $GITHUB_ENV
         echo "IS_DEPLOY=$IS_DEPLOY" >> $GITHUB_ENV
         echo "WILL_BE_DEPLOYED=$WILL_BE_DEPLOYED" >> $GITHUB_ENV
-    # No need to use cache: this image is very light
-    #- name: Download cache from Docker Hub
-    #  # Here we assume that latest release have common layers that should speed up our build
-    #  run: |
-    #    docker manifest inspect $IMAGE_NAME:latest &> /dev/null && \
-    #    docker pull $IMAGE_NAME:latest
     - name: Build
       run: |
         make $IMAGE_NAME
