@@ -7,17 +7,17 @@ Image has a pre-created user "ci_user", which, if run with default entrypoint sc
 
 
 ## Build
-```shell
+```bash
 make rudenkornk/docker_ci
 ```
 
 ## Test
-```shell
+```bash
 make check
 ```
 
 ## Run
-```shell
+```bash
 CI_BIND_MOUNT=$(pwd) make docker_ci_container
 
 docker attach docker_ci_container
@@ -26,7 +26,7 @@ docker exec -it docker_ci_container bash -c "source ~/.profile && bash"
 ```
 
 ## Clean
-```shell
+```bash
 make clean
 # Optionally clean entire docker system and remove ALL containers
 ./clean_all_docker.sh
@@ -37,7 +37,7 @@ This repository supports three different scenarios
 
 ### 1. Use image for your local testing
 
-```shell
+```bash
 docker run --interactive --tty \
   --user ci_user \
   --env CI_UID="$(id --user)" --env CI_GID="$(id --group)" \
