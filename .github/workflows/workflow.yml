@@ -48,17 +48,13 @@ jobs:
              '${{ github.event_name }}' == 'workflow_dispatch' && \
              '${{ github.event.inputs.deploy }}' == 'true' \
             ) \
-          ]] && echo true || echo false
+          ]] && echo true || echo false \
         )
         WILL_BE_DEPLOYED=$( \
           [[ \
-            ( \
-              $COMMIT_MSG_HAS_DEPLOY == 'true' \
-            ) || \
-            ( \
-             '${{ github.event_name }}' == 'workflow_dispatch' && \
-             '${{ github.event.inputs.deploy }}' == 'true' \
-            ) \
+            ($COMMIT_MSG_HAS_DEPLOY == 'true') \
+            || \
+            ($IS_DEPLOY == 'true') \
           ]] && echo true || echo false
         )
         echo "IS_DEPLOY=$IS_DEPLOY" >> $GITHUB_ENV
