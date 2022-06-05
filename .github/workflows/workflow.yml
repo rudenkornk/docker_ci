@@ -78,10 +78,9 @@ jobs:
         echo "REMOTE_IMAGE_TAG=$REMOTE_IMAGE_TAG" >> $GITHUB_ENV
         echo "REMOTE_IMAGE_LATEST=$REMOTE_IMAGE_LATEST" >> $GITHUB_ENV
     - name: "Login to container registry"
-      if: env.WILL_BE_DEPLOYED == 'true'
       uses: docker/login-action@v1
       with:
-        registry: ${{ env.registry }}
+        #registry: ${{ env.registry }} # uncomment for any registry except docker.io
         username: ${{ github.actor }}
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOCKEN }}
     - name: Build
