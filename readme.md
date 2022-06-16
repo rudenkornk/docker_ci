@@ -18,7 +18,7 @@ make check
 
 ## Run
 ```bash
-CI_BIND_MOUNT=$(pwd) make docker_ci_container
+make docker_ci_container
 
 docker attach docker_ci_container
 # OR
