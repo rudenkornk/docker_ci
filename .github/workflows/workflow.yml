@@ -80,7 +80,7 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOCKEN }}
     - name: Build
-      run: make $IMAGE_NAME
+      run: make image
     - name: Test
       run: make check
     - name: Clean
