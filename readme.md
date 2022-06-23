@@ -8,7 +8,7 @@ Image has a pre-created user "ci_user", which, if run with default entrypoint sc
 
 ## Build
 ```bash
-make rudenkornk/docker_ci
+make image
 ```
 
 ## Test
@@ -18,7 +18,7 @@ make check
 
 ## Run
 ```bash
-make docker_ci_container
+make container
 
 docker attach docker_ci_container
 # OR
